@@ -1,0 +1,62 @@
+{
+  "name": "ccd-fhir",
+  "version": "0.9.1",
+  "description": "Blue Button CCD Parser",
+  "main": "./index.js",
+  "directories": {
+    "doc": "doc",
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "grunt test"
+  },
+  "author": "Dmitry Kachaev <dmitry@amida-tech.com>",
+  "contributors": [
+    {
+      "name": "Matthew McCall",
+      "email": "matt@amida-tech.com"
+    },
+    {
+      "name": "Afsin Ustundag",
+      "email": "afsin.ustundag@us.pwc.com"
+    },
+    {
+      "name": "Matt Martz",
+      "email": "matt.martz@amida-tech.com"
+    }
+  ],
+  "license": "Apache-2.0",
+  "engines": {
+    "node": ">= 0.10.0"
+  },
+  "dependencies": {
+    "lodash": "~3.10.0",
+    "sax": "~1.1.2",
+    "debug": "~2.2.0" 
+  },
+  "devDependencies": {
+    "chai": "~2.3.0",
+    "coveralls": "~2.11.2",
+    "grunt": "~0.4.5",
+    "grunt-contrib-jshint": "~0.11.2",
+    "grunt-coveralls": "~1.0.0",
+    "grunt-mocha-istanbul": "^3.0.1",
+    "grunt-jsbeautifier": "~0.2.10",
+    "grunt-mocha-test": "~0.12.7",
+    "mocha": "~2.2.4",
+    "request": "~2.61.0",
+    "istanbul": "*",
+    "mocha-lcov-reporter": "0.0.2"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/amida-tech/ccd-fhir.git"
+  },
+  "keywords": [
+    "bluebutton,ccd,fhir,parsing"
+  ],
+  "bugs": {
+    "url": "https://github.com/amida-tech/ccd-fhir/issues"
+  },
+  "homepage": "https://github.com/amida-tech/ccd-fhir"
+}
