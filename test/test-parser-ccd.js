@@ -7,53 +7,94 @@ var fs = require('fs');
 
 var bbcms = require("../index");
 
+var testoOn = function (infile, outfile, goldfile, done) {
+    var istream = fs.createReadStream(infile, 'utf-8');
+    expect(istream).to.exist;
+
+    istream
+        .pipe(new bbcms.CcdParserStream())
+        .on('data', function (data) {
+            expect(data).to.exist;
+            fs.writeFile(outfile, JSON.stringify(data, null, '  '));
+
+            if (goldfile) {
+                var gold = fs.readFileSync(goldfile, 'utf-8');
+                expect(JSON.parse(gold)).to.eql(data);
+            }
+
+        })
+        .on('finish', function () {
+            done();
+        })
+        .on('error', function (error) {
+            done(error);
+        });
+};
+
 describe('CCD parser test', function () {
 
     it('"CCD_20131121_ACMA10102495SLTXMWPGMandGoals" as input', function (done) {
 
-        var istream = fs.createReadStream(__dirname + '/../../private-records/HCSC/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.xml', 'utf-8');
-        expect(istream).to.exist;
-
-        istream
-            .pipe(new bbcms.CcdParserStream())
-            .on('data', function (data) {
-                expect(data).to.exist;
-                fs.writeFile(__dirname + '/artifacts/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.json', JSON.stringify(data, null, '  '));
-
-                var gold = fs.readFileSync(__dirname + '/artifacts/CCD_20131121_ACMA10102495SLTXMWPGMandGoals-gold.json', 'utf-8');
-                expect(JSON.parse(gold)).to.eql(data);
-
-            })
-            .on('finish', function () {
-                done();
-            })
-            .on('error', function (error) {
-                done(error);
-            });
+        testoOn(__dirname + '/../../private-records/HCSC/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.xml',
+            __dirname + '/artifacts/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.json',
+            __dirname + '/artifacts/CCD_20131121_ACMA10102495SLTXMWPGMandGoals-gold.json',
+            done
+        );
 
     });
 
-    it('"CCD_20131216_ACMA99457456BCFDIG.xml" as input', function (done) {
+    it('"CCD_20131216_ACMA99457456BCFDIG" as input', function (done) {
 
-        var istream = fs.createReadStream(__dirname + '/../../private-records/HCSC/CCD_20131216_ACMA99457456BCFDIG.xml', 'utf-8');
-        expect(istream).to.exist;
+        testoOn(__dirname + '/../../private-records/HCSC/CCD_20131216_ACMA99457456BCFDIG.xml',
+            __dirname + '/artifacts/CCD_20131216_ACMA99457456BCFDIG.json',
+            __dirname + '/artifacts/CCD_20131216_ACMA99457456BCFDIG-gold.json',
+            done
+        );
 
-        istream
-            .pipe(new bbcms.CcdParserStream())
-            .on('data', function (data) {
-                expect(data).to.exist;
-                fs.writeFile(__dirname + '/artifacts/CCD_20131216_ACMA99457456BCFDIG.json', JSON.stringify(data, null, '  '));
+    });
+    it('"DEID02732967ZVZACA_CCD.xml" as input', function (done) {
 
-                var gold = fs.readFileSync(__dirname + '/artifacts/CCD_20131216_ACMA99457456BCFDIG-gold.json', 'utf-8');
-                expect(JSON.parse(gold)).to.eql(data);
+        testoOn(__dirname + '/../../private-records/medicasoft/deidccd/DEID02732967ZVZACA_CCD.xml',
+            __dirname + '/artifacts/DEID02732967ZVZACA_CCD.json',
+            __dirname + '/artifacts/DEID02732967ZVZACA_CCD-gold.json',
+            done
+        );
+    });
 
-            })
-            .on('finish', function () {
-                done();
-            })
-            .on('error', function (error) {
-                done(error);
-            });
+    it('"DEID06068444RGVUDR_CCD.xml" as input', function (done) {
+
+        testoOn(__dirname + '/../../private-records/medicasoft/deidccd/DEID06068444RGVUDR_CCD.xml',
+            __dirname + '/artifacts/DEID06068444RGVUDR_CCD.json',
+            __dirname + '/artifacts/DEID06068444RGVUDR_CCD-gold.json',
+            done
+        );
+    });
+
+    it('"DEID10023094WRYZBV_CCD.xml" as input', function (done) {
+
+        testoOn(__dirname + '/../../private-records/medicasoft/deidccd/DEID10023094WRYZBV_CCD.xml',
+            __dirname + '/artifacts/DEID10023094WRYZBV_CCD.json',
+            __dirname + '/artifacts/DEID10023094WRYZBV_CCD-gold.json',
+            done
+        );
+    });
+
+    it('"DEID10054139UQVPSZ_CCD.xml" as input', function (done) {
+
+        testoOn(__dirname + '/../../private-records/medicasoft/deidccd/DEID10054139UQVPSZ_CCD.xml',
+            __dirname + '/artifacts/DEID10054139UQVPSZ_CCD.json',
+            __dirname + '/artifacts/DEID10054139UQVPSZ_CCD-gold.json',
+            done
+        );
+    });
+
+    it('"DEID10091332GJSVIQ_CCD.xml" as input', function (done) {
+
+        testoOn(__dirname + '/../../private-records/medicasoft/deidccd/DEID10091332GJSVIQ_CCD.xml',
+            __dirname + '/artifacts/DEID10091332GJSVIQ_CCD.json',
+            __dirname + '/artifacts/DEID10091332GJSVIQ_CCD-gold.json',
+            done
+        );
 
     });
 
