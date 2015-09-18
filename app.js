@@ -29,7 +29,7 @@ console.time('--> CcdParserStream');
 var request = require('request');
 //var istream = request.get('https://raw.githubusercontent.com/chb/sample_ccdas/master/Vitera/Vitera_CCDA_SMART_Sample.xml');
 
-var istream = fs.createReadStream(__dirname + '/../private/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.xml', 'utf-8');
+var istream = fs.createReadStream(__dirname + '/../private-records/HCSC/CCD_20131121_ACMA10102495SLTXMWPGMandGoals.xml', 'utf-8');
 
 istream
     .pipe(new bbcms.CcdParserStream("test"))
