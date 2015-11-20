@@ -10,19 +10,15 @@
   "scripts": {
     "test": "grunt test"
   },
-  "author": "Dmitry Kachaev <dmitry@amida-tech.com>",
+  "author": "Alexey Shchelokov <alexey@amida-tech.com>",
   "contributors": [
     {
-      "name": "Matthew McCall",
-      "email": "matt@amida-tech.com"
+      "name": "Dmitry Kachaev",
+      "email": "dmitry@amida-tech.com"
     },
     {
       "name": "Afsin Ustundag",
       "email": "afsin.ustundag@us.pwc.com"
-    },
-    {
-      "name": "Matt Martz",
-      "email": "matt.martz@amida-tech.com"
     }
   ],
   "license": "Apache-2.0",
