@@ -38,7 +38,7 @@ var makeTransactionalBundle = function (bundle, base, patientId) {
 var request = require('request');
 
 // Get sample file from GitHub
-var istream = request.get('https://raw.githubusercontent.com/chb/sample_ccdas/master/Vitera/Vitera_CCDA_SMART_Sample.xml');
+var istream = request.get('https://raw.githubusercontent.com/amida-tech/blue-button/master/test/fixtures/parser-ccd/SampleCCDDocument.xml');
 
 istream
     .pipe(new bbcms.CcdParserStream("test" /* PatientId */))
